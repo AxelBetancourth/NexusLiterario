@@ -16,7 +16,7 @@ python manage.py runserver
 
 ---- Pasos cuando clonen el repositorio ----
 
-//Instalar el entorno virtual
+//Instalar el entorno virtual desde la consola llamada Command Prompt
 python -m venv env
 
 //Activarlo en la consola llamada Command Prompt
@@ -32,10 +32,7 @@ pip install -r requirements.txt
 
 ----- Pasos para poder usar MySQL ------
 
-//Instalar el conector MySQL
-pip install mysqlclient
-
-//Crear la base de datos llama nexusliterario con xampp
+//Crear la base de datos llama "nexusliterario" en utf8_spanish_ci con xampp
 
 //Aplicar migraciones
 python manage.py migrate
