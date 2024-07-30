@@ -1,0 +1,43 @@
+---- Pasos para Axel ----
+
+//Para entrar al entorno virtual
+.\env\Scripts\activate
+
+//Comando para generar las versiones de las dependencias
+pip freeze > requirements.txt
+
+//Comando para correr el servidor
+python manage.py runserver
+
+-- fin pasos Axel ---
+
+
+
+
+---- Pasos cuando clonen el repositorio ----
+
+//Instalar el entorno virtual
+python -m venv env
+
+//Activarlo en la consola llamada Command Prompt
+env\Scripts\activate
+
+//Instalar dependencias
+pip install -r requirements.txt
+
+---- fin pasos ----
+
+
+
+
+----- Pasos para poder usar MySQL ------
+
+//Instalar el conector MySQL
+pip install mysqlclient
+
+//Crear la base de datos llama nexusliterario con xampp
+
+//Aplicar migraciones
+python manage.py migrate
+
+---- fin pasos -----
