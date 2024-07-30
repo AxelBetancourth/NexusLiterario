@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/administrator.css' %}">
+    <link rel="stylesheet" href="{% static 'administrator.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -16,15 +16,15 @@
     <header class="header">
         <nav class="nav">
             <div class="logo">
-                <a href="index.html">
-                    <img src="img/logo.png" alt="">
+                <a href="#">
+                    <img src="{% static "img/logo.png" %}" alt="">
                 </a>
                 <h2>Nexus Literario</h2>
             </div>
     
             <div>
-                <a href="login.html" class="navegador">
-                    <img src="img/usuario.png" alt="">
+                <a href="#" class="navegador">
+                    <img src="{% static "img/usuario.png" %}" alt="">
                     <h3>Cerrar Sesión</h3>
                 </a>
             </div>
@@ -41,12 +41,12 @@
             <!-- Buscador -->
             <div class="buscador">
                 <div class="input-buscador">
-                    <img src="img/lupa.png" alt="">
+                    <img src="{% static "img/lupa.png" %}" alt="">
                     <input type="text" placeholder="Buscar...">
                 </div>
 
                 <div class="img-delete">
-                    <img src="img/eliminar.png" alt="">
+                    <img src="{% static "img/eliminar.png" %}" alt="">
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
             <form class="info-principal">
                 <div class="lado_izquierdo">
                     <div class="portada">
-                        <img src="img/portada.jpg" alt="" id="img_default">
+                        <img src="{% static "img/portada.jpg" %}" alt="" id="img_default">
                         <input type="file" id="img_input">
                     </div>
 
@@ -165,11 +165,11 @@
 
                     <div class="botones">
                         <button type="button" class="cancelar" id="cancelar_btn">
-                            <img src="img/boton-mas.png" alt="">
+                            <img src="{% static "img/boton-mas.png" %}" alt="">
                             <p>Cancelar</p>
                         </button>
                         <button type="submit" class="guardar">
-                            <img src="img/boton-mas.png" alt="">
+                            <img src="{% static "img/boton-mas.png" %}" alt="">
                             <p>Guardar</p>
                         </button>
                     </div>
