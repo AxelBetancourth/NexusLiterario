@@ -6,7 +6,7 @@
 //Comando para generar las versiones de las dependencias
 pip freeze > requirements.txt
 
-//Comando para correr el servidor
+//Comando para correr el servidor y antes tienes que entrar al entorno virtual
 python manage.py runserver
 
 -- fin pasos Axel ---
@@ -32,9 +32,25 @@ pip install -r requirements.txt
 
 ----- Pasos para poder usar MySQL ------
 
+//Instalar el MySQL client
+pip install mysqlclient
+
 //Crear la base de datos llama "nexusliterario" en utf8_spanish_ci con xampp
 
 //Aplicar migraciones
 python manage.py migrate
 
 ---- fin pasos -----
+
+
+
+---- Pasos para crear un usuario admin ----
+
+// Comando para crearlo
+python manage.py createsuperuser
+
+//Axel
+//prueba@gmail.com 
+//Betancourth
+
+---- fin pasos ----
