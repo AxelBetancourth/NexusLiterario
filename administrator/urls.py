@@ -4,5 +4,5 @@ from . import views
 urlpatterns = [
     #Aqui iran las urls de administrador
     # path('index', views.index), Cuando termine agregar esta
-    path('', views.index, name="index"),
+    path('', views.admin, name="admin"),
 ]
