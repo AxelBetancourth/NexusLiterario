@@ -9,6 +9,9 @@ pip freeze > requirements.txt
 //Comando para correr el servidor y antes tienes que entrar al entorno virtual
 python manage.py runserver
 
+//Comando para crear una aplicacion
+python manage.py startapp nombre_aplicacion
+
 -- fin pasos Axel ---
 
 

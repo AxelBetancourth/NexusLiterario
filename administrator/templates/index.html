@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'administrator.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
@@ -23,7 +24,7 @@
             </div>
     
             <div>
-                <a href="#" class="navegador">
+                <a href="{% url 'main' %}" class="navegador">
                     <img src="{% static "img/usuario.png" %}" alt="">
                     <h3>Cerrar Sesión</h3>
                 </a>
@@ -51,21 +52,22 @@
             </div>
 
             <!-- Imagen portada, titulo, descripcion etc-->
-            <form class="info-principal">
+            <form class="info-principal" method="post" enctype="multipart/form-data" id="miFormulario">
+                {% csrf_token %}
                 <div class="lado_izquierdo">
                     <div class="portada">
                         <img src="{% static "img/portada.jpg" %}" alt="" id="img_default">
-                        <input type="file" id="img_input">
+                        {{ form.imagen }}
                     </div>
 
                     <div class="autor">
-                        <input type="text" id="autor_input" placeholder="Autor...">
+                        {{ form.autor }}
                     </div>
 
                     <div>
                         <label for="fecha_publicacion" class="fecha">
                             <p>Fecha Publicación:</p>
-                            <input type="date" id="fecha_publicacion">
+                            {{ form.fecha_publicacion }}
                         </label>
                     </div>
                 </div>
@@ -73,94 +75,20 @@
                 <div class="texto">
                     <div class="texto_info">
                         <div class="titulo_precio">
-                            <input type="text" id="titulo_input" placeholder="Título...">
-                            <label for="precio_input">
+                            {{ form.titulo }}
+                            <label for="{{ form.precio.id_for_label }}">
                                 <p>Precio:</p>
-                                <input type="number" id="precio_input">
+                                {{ form.precio }}
                                 <p> Lps</p>
                             </label>
                         </div>
                         <div class="descripcion">
-                            <textarea id="descripcion_input" rows="10" placeholder="Descripción..."></textarea>
+                            {{ form.descripcion }}
                         </div>
                     </div>
 
                     <div class="checkboxes">
-                        <div class="columnaCheck">
-                            <label for="masReciente">
-                                <input type="checkbox" id="masReciente" name="masReciente">
-                                <p>Más Reciente</p>
-                            </label>
-                            <label for="fechaPublicacion">
-                                <input type="checkbox" id="fechaPublicacion" name="fechaPublicacion">
-                                <p>Fecha de Publicación</p>
-                            </label>
-                            <label for="a_z">
-                                <input type="checkbox" id="a_z" name="a_z">
-                                <p>A-Z</p>
-                            </label>
-                            <label for="miedo">
-                                <input type="checkbox" id="miedo" name="miedo">
-                                <p>Miedo</p>
-                            </label>
-                        </div>
-
-                        <div class="columnaCheck">
-                            <label for="romance">
-                                <input type="checkbox" id="romance" name="romance">
-                                <p>Romance</p>
-                            </label>
-                            <label for="accion">
-                                <input type="checkbox" id="accion" name="accion">
-                                <p>Acción</p>
-                            </label>
-                            <label for="misterio">
-                                <input type="checkbox" id="misterio" name="misterio">
-                                <p>Misterio</p>
-                            </label>
-                            <label for="historia">
-                                <input type="checkbox" id="historia" name="historia">
-                                <p>Historia</p>
-                            </label>
-                        </div>
-
-                        <div class="columnaCheck">
-                            <label for="aventura">
-                                <input type="checkbox" id="aventura" name="aventura">
-                                <p>Aventura</p>
-                            </label>
-                            <label for="economia">
-                                <input type="checkbox" id="economia" name="economia">
-                                <p>Economía</p>
-                            </label>
-                            <label for="biografias">
-                                <input type="checkbox" id="biografias" name="biografias">
-                                <p>Biografías</p>
-                            </label>
-                            <label for="ciencia">
-                                <input type="checkbox" id="ciencia" name="ciencia">
-                                <p>Ciencia</p>
-                            </label>
-                        </div>
-
-                        <div class="columnaCheck">
-                            <label for="literatura">
-                                <input type="checkbox" id="literatura" name="literatura">
-                                <p>Literatura</p>
-                            </label>
-                            <label for="fantasia">
-                                <input type="checkbox" id="fantasia" name="fantasia">
-                                <p>Fantasia</p>
-                            </label>
-                            <label for="medicina">
-                                <input type="checkbox" id="medicina" name="medicina">
-                                <p>Medicina</p>
-                            </label>
-                            <label for="programacion">
-                                <input type="checkbox" id="programacion" name="programacion">
-                                <p>Programación</p>
-                            </label>
-                        </div>
+                        {{ form.categorias }}
                     </div>
 
                     <div class="botones">
@@ -180,7 +108,7 @@
 
     <script>
         const originalImgSrc = document.getElementById('img_default').src;
-
+    
         document.getElementById('img_input').addEventListener('change', function(event) {
             const input = event.target;
             if (input.files && input.files[0]) {
@@ -191,23 +119,38 @@
                 reader.readAsDataURL(input.files[0]);
             }
         });
-
+    
         function checkForm() {
-            const imgInput = document.getElementById('img_input').value;
+            const imgInput = document.getElementById('img_input').files.length > 0;
             const autorInput = document.getElementById('autor_input').value.trim();
             const fechaPublicacion = document.getElementById('fecha_publicacion').value;
             const tituloInput = document.getElementById('titulo_input').value.trim();
             const precioInput = document.getElementById('precio_input').value.trim();
             const descripcionInput = document.getElementById('descripcion_input').value.trim();
             const checkboxes = document.querySelectorAll('.checkboxes input:checked');
-
+    
             if (imgInput || autorInput || fechaPublicacion || tituloInput || precioInput || descripcionInput || checkboxes.length > 0) {
                 document.getElementById('cancelar_btn').style.display = 'flex';
             } else {
                 document.getElementById('cancelar_btn').style.display = 'none';
             }
         }
-
+    
+        function validateForm() {
+            const imgInput = document.getElementById('img_input').files.length > 0;
+            const checkboxes = document.querySelectorAll('.checkboxes input:checked');
+    
+            if (!imgInput) {
+                alert('Por favor, selecciona una imagen.');
+                return false;
+            }
+            if (checkboxes.length === 0) {
+                alert('Por favor, selecciona al menos una categoría.');
+                return false;
+            }
+            return true;
+        }
+    
         document.getElementById('img_input').addEventListener('change', checkForm);
         document.getElementById('autor_input').addEventListener('input', checkForm);
         document.getElementById('fecha_publicacion').addEventListener('change', checkForm);
@@ -217,7 +160,7 @@
         document.querySelectorAll('.checkboxes input').forEach(checkbox => {
             checkbox.addEventListener('change', checkForm);
         });
-
+    
         document.getElementById('cancelar_btn').addEventListener('click', () => {
             document.getElementById('img_input').value = '';
             document.getElementById('autor_input').value = '';
@@ -228,12 +171,45 @@
             document.querySelectorAll('.checkboxes input').forEach(checkbox => {
                 checkbox.checked = false;
             });
-
+    
             document.getElementById('img_default').src = originalImgSrc;
-
+    
             checkForm();
         });
-
+    
+        $(document).ready(function() {
+            $('#miFormulario').on('submit', function(event) {
+                if (!validateForm()) {
+                    event.preventDefault();
+                    return;
+                }
+    
+                event.preventDefault();
+    
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        if (response.success) {
+                        alert(response.message);
+                        document.getElementById('img_input').value = '';
+                        document.getElementById('img_default').src = originalImgSrc;
+                        $('#miFormulario')[0].reset();
+                        checkForm();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function() {
+                        alert('Error al procesar la solicitud');
+                    }
+                });
+            });
+        });
+    
         checkForm();
     </script>
     
