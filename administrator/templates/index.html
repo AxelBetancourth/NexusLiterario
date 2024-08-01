@@ -41,15 +41,23 @@
         <div class="main-container">
             <!-- Buscador -->
             <div class="buscador">
-                <div class="input-buscador">
-                    <img src="{% static "img/lupa.png" %}" alt="">
-                    <input type="text" placeholder="Buscar...">
-                </div>
+                <form class="input-buscador" method="get">
+                    <button type="submit">
+                        <img src="{% static "img/lupa.png" %}" alt="">
+                    </button>
+                    <input type="text" id="searchInput" placeholder="Buscar...">
 
-                <div class="img-delete">
-                    <img src="{% static "img/eliminar.png" %}" alt="">
+                    <div class="img-delete">
+                        <img src="{% static "img/eliminar.png" %}" alt="">
+                    </div>
+                </form>
+
+                <div id="resultados_busqueda" class="resultados-busqueda">
+                    <!-- Aquí se mostrarán los resultados de la búsqueda -->
+                     <!-- <p>Aquí se mostrarán los resultados de la búsqueda </p> -->
                 </div>
             </div>
+
 
             <!-- Imagen portada, titulo, descripcion etc-->
             <form class="info-principal" method="post" enctype="multipart/form-data" id="miFormulario">
@@ -107,6 +115,23 @@
     </main>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const resultsContainer = document.getElementById('resultados_busqueda');
+
+            searchInput.addEventListener('input', function() {
+                if (searchInput.value.trim() !== '') {
+                    resultsContainer.style.display = 'block'; // Muestra los resultados
+                    document.querySelector('.img-delete').style.display = 'block'; // Muestra el ícono de eliminar
+                } else {
+                    resultsContainer.style.display = 'none'; // Oculta los resultados
+                    document.querySelector('.img-delete').style.display = 'none'; // Oculta el ícono de eliminar
+                }
+            });
+        });
+
+
+
         const originalImgSrc = document.getElementById('img_default').src;
     
         document.getElementById('img_input').addEventListener('change', function(event) {
@@ -211,6 +236,114 @@
         });
     
         checkForm();
+
+
+
+        // Función para realizar la búsqueda
+        function realizarBusqueda() {
+        const busqueda = document.querySelector('.input-buscador input').value;
+        const resultadosDiv = document.getElementById('resultados_busqueda');
+        
+        if (busqueda.trim() === '') {
+            resultadosDiv.innerHTML = '';
+            return;
+        }
+        
+        fetch(`?busqueda=${busqueda}`)
+            .then(response => response.json())
+            .then(data => {
+                resultadosDiv.innerHTML = '';
+                if (data.resultados.length === 0) {
+                    resultadosDiv.innerHTML = '<p>No se encontraron resultados.</p>';
+                } else {
+                    data.resultados.forEach(libro => {
+                        const libroDiv = document.createElement('div');
+                        libroDiv.className = 'resultado-libro';
+                        libroDiv.innerHTML = `
+                            <img src="${libro.imagen || '{% static "img/portada.jpg" %}'}" alt="${libro.titulo}">
+                            <span>${libro.titulo}</span>
+                        `;
+                        libroDiv.addEventListener('click', () => cargarLibro(libro.id));
+                        resultadosDiv.appendChild(libroDiv);
+                    });
+                }
+            });
+    }
+
+    // Función para cargar un libro en el formulario
+    function cargarLibro(libroId) {
+    console.log("Cargando libro con ID:", libroId);
+    fetch(`/superuser/obtener_libro/${libroId}/`)
+        .then(response => {
+            console.log("Respuesta recibida:", response);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Datos del libro recibidos:", data);
+            if (data.success) {
+                document.getElementById('titulo_input').value = data.libro.titulo;
+                document.getElementById('autor_input').value = data.libro.autor;
+                document.getElementById('precio_input').value = data.libro.precio;
+                document.getElementById('descripcion_input').value = data.libro.descripcion;
+                document.getElementById('fecha_publicacion').value = data.libro.fecha_publicacion;
+                if (data.libro.imagen) {
+                    document.getElementById('img_default').src = data.libro.imagen;
+                }
+                
+                // Marcar las categorías correspondientes
+                document.querySelectorAll('.checkboxes input').forEach(checkbox => {
+                    checkbox.checked = data.libro.categorias.includes(parseInt(checkbox.value));
+                });
+
+                // Mostrar el botón de eliminar
+                document.querySelector('.img-delete').style.display = 'block';
+                document.querySelector('.img-delete').onclick = () => eliminarLibro(data.libro.id);
+
+                checkForm();
+            } else {
+                throw new Error(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('No se pudo cargar el libro. Por favor, intenta de nuevo.');
+        });
+    }
+
+
+
+
+    // Función para eliminar un libro
+    function eliminarLibro(libroId) {
+        if (confirm('¿Estás seguro de que quieres eliminar este libro?')) {
+            fetch(`/eliminar_libro/${libroId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    // Limpiar el formulario
+                    document.getElementById('cancelar_btn').click();
+                    // Ocultar el botón de eliminar
+                    document.querySelector('.img-delete').style.display = 'none';
+                    // Actualizar la búsqueda
+                    realizarBusqueda();
+                } else {
+                    alert('Error al eliminar el libro');
+                }
+            });
+        }
+    }
+
+    // Agregar evento de búsqueda al input
+    document.querySelector('.input-buscador input').addEventListener('input', realizarBusqueda);
     </script>
     
 </body>
