@@ -96,22 +96,33 @@
 }
 
 .buscador{
+    position: relative;
     padding: 15px 20px 30px 20px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 30px;
 }
 
 .input-buscador{
     display: flex;
-    width: auto;
     width: 400px;
     border: 2px solid white;
     border-radius: 5px;
-    background-color:#DCDCDC;
+    background-color:#E5E5E5;
 }
 
-.input-buscador img{
+.input-buscador button{
+    outline: none;
+    border: solid 1px #E5E5E5;
+    background-color: #E5E5E5;
+}
+
+.input-buscador button:hover{
+    cursor: pointer;
+}
+
+.input-buscador button img{
     height: 18px;
     margin: 5px 20px 5px 10px;
 }
@@ -134,9 +145,70 @@
     color: black;
 }
 
+.img-delete {
+    background-color: #FFFFFF;
+    padding-left: 5px;
+    cursor: pointer;
+    display: none;
+}
+
 .img-delete img{
     width: 32px;
 }
+
+.resultados-busqueda {
+    background-color: #E5E5E5;
+    width: 300px;
+    height: 240px;
+    overflow-y: auto;
+    position: absolute;
+    top: 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#resultados_busqueda{
+    display: none;
+}
+
+.resultados-busqueda p{
+    margin-top: 15px;
+    text-align: center;
+}
+
+.resultado-libro {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.resultado-libro:hover {
+    background-color: #cacaca;
+}
+
+
+.resultado-libro img {
+    width: 50px;
+    height: 65px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.resultado-libro span{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 .info-principal{
     display: flex;
@@ -381,5 +453,9 @@
 
     .portada input{
         width: 100%;
+    }
+
+    .input-buscador{
+        width: auto;
     }
 }
