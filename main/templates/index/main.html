@@ -1,13 +1,349 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <button>
+        <div class="sepheader">
+            <img src="{% static "img/logo.png" %}" alt="logo">
+            <h2>Nexus literario</h2>
+        </div>
+        </button>
+        <div class="sepheader" >
+            <div class="buscador">
+                <div>
+                    <img src="{% static "img/lupa.png" %}" alt="">
+                    <input type="text" placeholder="Buscar...">
+                </div>
+            </div>
+            <button class="toggle-button2" onclick="toggleContainer2()" >
+                    <img src="{% static "img/filtrar.png" %}" alt="filtrar" id="filtroo">
+            </button>
+        </div>
+        <div class="container2" id="container2">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta fugit ipsa at nostrum aliquam rem ipsum error provident modi ab porro, autem in eos, pariatur dignissimos inventore iste soluta expedita!</p>
+        </div>
+        <div class="sepheader">
+            <nav class="nav">
+                <div class="filtro">
+                    <button class="toggle-button" onclick="toggleContainer()">
+                        <img src="{% static "img/CarritoAna.png" %}" alt="carrito">
+                    </button>
+                </div>
+                <div class="container" id="cart-container">
+                    <div class="items-container">
+                        <div class="item">
+                            <img src="{% static "img/portada1.jpg" %}" alt="Imagen">
+                            <div class="item-info">
+                                <div class="item-title">EL dragon</div>
+                                <div class="item-quantity">Cantidad: 1</div>
+                                <div class="item-price">L 1000.00</div>
+                            </div>
+                            <button id="delete-button">
+                                <img src="{% static "img/trash-solid-36.png" %}" alt="eliminar">
+                            </button>
+                        </div>
+                        <div class="item">
+                            <img src="{% static "img/portada1.jpg" %}" alt="Imagen">
+                            <div class="item-info">
+                                <div class="item-title">Las aventuras de Larry y sus amigos en el mundo mágico de las fantasías eternas</div>
+                                <div class="item-quantity">Cantidad: 1</div>
+                                <div class="item-price">L 2000.00</div>
+                            </div>
+                            <button id="delete-button">
+                                <img src="{% static "img/trash-solid-36.png" %}" alt="eliminar">
+                            </button>
+                        </div>
+                        <div class="item">
+                            <img src="{% static "img/portada1.jpg" %}" alt="Imagen">
+                            <div class="item-info">
+                                <div class="item-title">Las aventuras de Larry y sus amigos en el mundo mágico de las fantasías eternas</div>
+                                <div class="item-quantity">Cantidad: 1</div>
+                                <div class="item-price">L 500.00</div>
+                            </div>
+                            <button id="delete-button">
+                                <img src="{% static "img/trash-solid-36.png" %}" alt="eliminar">
+                            </button>
+                        </div>
+                        <div class="item">
+                            <img src="{% static "img/portada1.jpg" %}" alt="Imagen">
+                            <div class="item-info">
+                                <div class="item-title">Las aventuras de Larry y sus amigos en el mundo mágico de las fantasías eternas</div>
+                                <div class="item-quantity">Cantidad: 1</div>
+                                <div class="item-price">L 500.00</div>
+                            </div>
+                            <button id="delete-button">
+                                <img src="{% static "img/trash-solid-36.png" %}" alt="eliminar">
+                            </button>
+                        </div>
+                        <div class="item">
+                            <img src="{% static "img/portada1.jpg" %}" alt="Imagen">
+                            <div class="item-info">
+                                <div class="item-title">Las aventuras de Larry y sus amigos en el mundo mágico de las fantasías eternas</div>
+                                <div class="item-quantity">Cantidad: 1</div>
+                                <div class="item-price">L 500.00</div>
+                            </div>
+                            <button id="delete-button">
+                                <img src="{% static "img/trash-solid-36.png" %}" alt="eliminar">
+                            </button>
+                        </div>
+                        <!-- Agrega más items aquí -->
+                    </div>
+                    <div class="total-container">
+                        <div class="total-text">SubTotal</div>
+                        <div class="total-amount">L 3500.00</div>
+                        <button class="order-button">Hacer el pedido</button>
+                    </div>
+                </div>
+                <div class="container2" id="cart-container2">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. A, omnis fuga fugit placeat adipisci nemo quia ducimus magni repellendus est, quas ipsum nulla, similique aut cumque inventore sint iure quo.</p>
+                </div>
+                <a href="">
+                    <div class="butons">
+                        <img src="{% static "img/hogar.png" %}" alt="home">
+                        <h3>Inicio</h3>
+                    </div>
+                </a>
+                <a href="">
+                    <a class="butons" href="{% url 'login' %}">
+                        <img src="{% static "img/Usuario.png" %}" alt="home">
+                        <h3>Iniciar sesion </h3>
+                    </a>
+                </a>
+                <a href="{% url 'user' %}">
+                    <div class="butons">
+                        <img src="{% static "img/agregar-usuario.png" %}" alt="home">
+                        <h3>Registrar</h3>
+                    </div>
+                </a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="titulo">
+            <h1>Mas Populares</h1>
+        </div>
 
-    <h1>Esta es la interfaz principal</h1>
-    
+        <section class="secion1">
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+        </section>
+        <div class="titulo">
+            <h1>Mas Recientes</h1>
+        </div>
+        <section class="secion1">
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-maspng" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            <div class="book-item">
+                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
+                <div class="book-details">
+                    <span>Libro 1</span>
+                    <button>
+                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="secion2">
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+        </section>
+    </main>
+    <footer>
+        <div class="foter">
+            <h3>Conectando Mentes a Través de los Libros</h3>
+            <br>
+            <p>Somos tu punto de encuentro para explorar y compartir el mundo del conocimiento y la imaginación. Protegemos tu privacidad y garantizamos una experiencia segura. Este sitio está protegido por reCAPTCHA y se aplican la Política de Privacidad y las Condiciones del Servicio de Google.</p>
+        </div>
+        <div class="sepheader">
+            <img src="{% static "img/logo.png" %}" alt="logo">
+            <h2>Nexus literario</h2>
+        </div>
+        <div class="foter">
+    </footer>
+    <script>
+
+        function toggleContainer() {
+            var container = document.getElementById('cart-container');
+            var button = document.querySelector('.toggle-button');
+            
+            if (container.style.display === 'none' || container.style.display === '') {
+                container.style.display = 'flex';
+            } else {
+                container.style.display = 'none';
+            }
+        }
+
+        function toggleContainer2() {
+        var container2 = document.getElementById('container2');
+        
+        if (container2.style.display === 'none' || container2.style.display === '') {
+            container2.style.display = 'block';
+        } else {
+            container2.style.display = 'none';
+        }
+    }
+
+    </script>
 </body>
 </html>

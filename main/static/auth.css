@@ -1,0 +1,162 @@
+/* Resetting default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* Header styling */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo h2 {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Standard syntax */
+    margin-left: 10px;
+}
+
+.logo a img {
+    width: 80px;
+}
+
+.registro {
+    display: flex;
+    align-items: center;
+}
+
+.registro img {
+    width: 26px;
+    padding-right: 4px;
+}
+
+.registro h3 {
+    color: black;
+}
+
+.registro h3 span{
+    color: #FD5946;
+}
+
+/* Main container styling */
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    height: calc(100vh - 80px); /* Adjust according to header height */
+    margin: 40px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.left-side {
+    flex: 1;
+    background-color: #FF5E4D; /* Color de fondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-side img {
+    max-width: 80%;
+}
+
+.right-side {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-side h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.right-side h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.inputs-space{
+    display: flex;
+    flex-direction: column;
+}
+
+.inputs-space label {
+    padding-bottom: 5px;
+    align-items: center;
+}
+
+.inputs-space input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.inputs-space{
+    padding-bottom: 12px;
+}
+
+.actions{
+    display: flex;
+    padding: 10px 0 10px 0;
+}
+
+.remember{
+    display: flex;
+}
+
+.remember input{
+    width: auto;
+}
+
+.remember p{
+    font-size: 16px;
+}
+
+.forgot a{
+    color: #FD5946;
+}
+
+button[type="submit"] {
+    background-color: #FF5E4D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #e05244;
+}
+
+.parrafo p{
+    text-align: center;
+    padding-top: 8px;
+}
+.parrafo p a {
+    color: #FF5E4D;
+    text-decoration: none;
+}
