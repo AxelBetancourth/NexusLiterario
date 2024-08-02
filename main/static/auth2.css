@@ -33,23 +33,6 @@
     width: 80px;
 }
 
-.registro {
-    display: flex;
-    align-items: center;
-}
-
-.registro img {
-    width: 26px;
-    padding-right: 4px;
-}
-
-.registro h3 {
-    color: black;
-}
-
-.registro h3 span{
-    color: #FD5946;
-}
 
 /* Main container styling */
 .container {
@@ -84,60 +67,45 @@
 }
 
 .right-side h2 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 24px;
     text-align: center;
 }
 
-.right-side h3 {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 20px;
+.subtext {
+    padding-bottom: 16px;
+    font-size: 17px;
     text-align: center;
 }
 
-.inputs-space{
-    display: flex;
-    flex-direction: column;
-}
 
-.inputs-space label {
+.formulario label{
+    width: 100%;
     padding-bottom: 5px;
-    align-items: center;
 }
 
-.inputs-space input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.formulario input{
+    width: 100%;
+    height: 24px;
+    margin-bottom: 10px;
+    padding-left: 5px;
 }
 
-.inputs-space{
-    padding-bottom: 12px;
-}
-
-.actions{
+.centrar{
     display: flex;
-    gap: 50px;
-    padding: 10px 0 10px 0;
+    justify-content: center;
 }
 
-.remember{
+.link_p{
     display: flex;
-    gap: 4px;
+    gap: 6px;
+    padding-top: 10px;
 }
 
-.remember input{
-    width: auto;
+.link_p a{
+    color: #FF5E4D;
 }
 
-.remember p{
-    font-size: 16px;
-}
-
-.forgot a{
-    color: #FD5946;
-}
 
 button[type="submit"] {
     background-color: #FF5E4D;
@@ -154,11 +122,17 @@ button[type="submit"]:hover {
     background-color: #e05244;
 }
 
-.parrafo p{
-    text-align: center;
-    padding-top: 8px;
-}
-.parrafo p a {
-    color: #FF5E4D;
-    text-decoration: none;
+@media (max-width: 410px){
+
+    .container {
+        height: calc(100vh - 160px);
+    }
+    
+    .left-side {
+        display: none;
+    }
+
+    .subtext {
+        display: none;
+    }
 }

@@ -3,10 +3,6 @@ import os
 
 # Create your models here.
 
-from django.db import models
-
-# Create your models here.
-
 class Libros(models.Model):
     Id_Libros = models.AutoField(primary_key=True, db_column='Id_Libros')
     Titulo = models.CharField(max_length=50)
