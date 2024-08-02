@@ -3,8 +3,9 @@ from django.http import JsonResponse
 from .forms import FormularioAdmin
 from .models import Libros, Categorias, Categorias_Libros
 from django.db.models import Q
-from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def enviar(request):
     if request.method == 'POST':
         form = FormularioAdmin(request.POST, request.FILES)
@@ -54,7 +55,7 @@ def enviar(request):
     form = FormularioAdmin()
     return render(request, 'index.html', {'form': form})
 
-
+@login_required
 def obtener_libro(request, libro_id):
     try:
         libro = get_object_or_404(Libros, Id_Libros=libro_id)
@@ -76,7 +77,9 @@ def obtener_libro(request, libro_id):
         return JsonResponse(data)
     except Exception as e:
         return JsonResponse({'success': False, 'message': str(e)}, status=500)
+    
 
+@login_required
 def eliminar_libro(request, libro_id):
     if request.method == 'POST':
         libro = get_object_or_404(Libros, Id_Libros=libro_id)

@@ -12,6 +12,9 @@ python manage.py runserver
 //Comando para crear una aplicacion
 python manage.py startapp nombre_aplicacion
 
+python manage.py makemigrations
+python manage.py migrate
+
 -- fin pasos Axel ---
 
 
@@ -57,3 +60,17 @@ python manage.py createsuperuser
 //Betancourth
 
 ---- fin pasos ----
+
+
+---- Pasos para crear un usuario por servidor de tipo administrador ----
+from main.models import Users
+from django.contrib.auth.hashers import make_password
+
+password = 'Jafet'
+hashed_password = make_password(password)
+
+nuevo_usuario = Users(correo='usuario@ejemplo.com',user_name='Jafet',tipo='administrador',password=hashed_password)
+
+nuevo_usuario.save()
+
+--- fin pasos ---

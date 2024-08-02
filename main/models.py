@@ -15,9 +15,9 @@ class Users(models.Model):
     
     Id_User = models.AutoField(primary_key=True, db_column='Id_User')
     correo = models.CharField(max_length=50)
-    user_name = models.CharField(max_length=30)
+    user_name = models.CharField(max_length=30, unique=True)
     tipo = models.CharField(max_length=30, choices=TIPO_CHOICES, default=CLIENTE)
-    password = models.CharField(max_length=30)
+    password = models.CharField(max_length=200)
     
     def __str__(self):
         return self.user_name
