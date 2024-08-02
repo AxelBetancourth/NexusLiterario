@@ -24,20 +24,18 @@
         <div class="right-side">
             <h2>Bienvenido</h2>
             <h3>Ingrese sus datos para acceder a su cuenta.</h3>
-            <form action="your_login_endpoint" method="post" >
+
+            <form action="{% url 'login' %}" method="post" >
+                {% csrf_token %}
+
                 <div class="inputs-space">
-                    <label for="email">Correo electrónico</label>
-                    <input type="text" id="email" name="email">
+                    {{ form.user_name.label_tag }}
+                    {{ form.user_name }}
                 </div>
 
-                <!-- <div class="inputs-space">
-                    <label for="username">Nombre de usuario</label>
-                    <input type="text" id="username" name="username">
-                </div> -->
-
                 <div class="inputs-space">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password">
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
                 </div>
 
                 <div class="actions">
@@ -60,5 +58,14 @@
             </div>
         </div>
     </div>
+
+    {% if messages %}
+        <script>
+            {% for message in messages %}
+                alert("{{ message }}");
+            {% endfor %}
+        </script>
+    {% endif %}
+    
 </body>
 </html>
