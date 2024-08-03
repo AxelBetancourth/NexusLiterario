@@ -63,6 +63,7 @@ python manage.py createsuperuser
 
 
 ---- Pasos para crear un usuario por servidor de tipo administrador ----
+python manage.py shell
 from main.models import Users
 from django.contrib.auth.hashers import make_password
 

@@ -8,306 +8,143 @@
     <title>Inicio</title>
     <link rel="stylesheet" href="{% static 'main.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <style>
+        .sepheader img {
+            object-fit: scale-down;
+        }
+
+        .container2 form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .container2 label {
+            margin-bottom: 10px;
+        }
+
+        .container2 button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .container2 button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
 </head>
 <body>
     <header>
         <button>
-        <div class="sepheader">
-            <img src="{% static "img/logo.png" %}" alt="logo">
-            <h2>Nexus literario</h2>
-        </div>
-        </button>
-        <div class="sepheader" >
-            <div class="buscador">
-                <div>
-                    <img src="{% static "img/lupa.png" %}" alt="">
-                    <input type="text" placeholder="Buscar...">
-                </div>
+            <div class="sepheader">
+                <img src="{% static 'img/logo.png' %}" alt="logo">
+                <h2>Nexus literario</h2>
             </div>
-            <button class="toggle-button2" onclick="toggleContainer2()" >
-                    <img src="{% static "img/filtrar.png" %}" alt="filtrar" id="filtroo">
+        </button>
+        <form class="sepheader">
+            <button type="button" class="toggle-button2" onclick="toggleContainer2(event)">
+                <img src="{% static 'img/filtrar.png' %}" alt="filtrar" id="filtroo">
             </button>
-        </div>
+        </form>
         <div class="container2" id="container2">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta fugit ipsa at nostrum aliquam rem ipsum error provident modi ab porro, autem in eos, pariatur dignissimos inventore iste soluta expedita!</p>
+            <form method="get" action="{% url 'main' %}">
+                {% for categoria in categorias %}
+                    <label>
+                        <input type="checkbox" name="categoria" value="{{ categoria.Categorias }}"
+                               {% if categoria.Categorias in categorias_seleccionadas %}checked{% endif %}>
+                        {{ categoria.Categorias }}
+                    </label><br>
+                {% endfor %}
+                <button type="submit">Filtrar</button>
+            </form>
         </div>
         <div class="sepheader">
             <nav class="nav">
                 <div class="filtro">
                     <button class="toggle-button" onclick="toggleContainer()">
-                        <img src="{% static "img/CarritoAna.png" %}" alt="carrito">
+                        <img src="{% static 'img/CarritoAna.png' %}" alt="carrito">
                     </button>
                 </div>
                 <div class="container" id="cart-container">
                     <div class="items-container">
-                        <div class="item">
-                            <img src="{% static "img/portada1.jpg" %}" alt="Imagen">
-                            <div class="item-info">
-                                <div class="item-title">EL dragon</div>
-                                <div class="item-quantity">Cantidad: 1</div>
-                                <div class="item-price">L 1000.00</div>
-                            </div>
-                            <button id="delete-button">
-                                <img src="{% static "img/trash-solid-36.png" %}" alt="eliminar">
-                            </button>
-                        </div>
-                        <div class="item">
-                            <img src="{% static "img/portada1.jpg" %}" alt="Imagen">
-                            <div class="item-info">
-                                <div class="item-title">Las aventuras de Larry y sus amigos en el mundo mágico de las fantasías eternas</div>
-                                <div class="item-quantity">Cantidad: 1</div>
-                                <div class="item-price">L 2000.00</div>
-                            </div>
-                            <button id="delete-button">
-                                <img src="{% static "img/trash-solid-36.png" %}" alt="eliminar">
-                            </button>
-                        </div>
-                        <div class="item">
-                            <img src="{% static "img/portada1.jpg" %}" alt="Imagen">
-                            <div class="item-info">
-                                <div class="item-title">Las aventuras de Larry y sus amigos en el mundo mágico de las fantasías eternas</div>
-                                <div class="item-quantity">Cantidad: 1</div>
-                                <div class="item-price">L 500.00</div>
-                            </div>
-                            <button id="delete-button">
-                                <img src="{% static "img/trash-solid-36.png" %}" alt="eliminar">
-                            </button>
-                        </div>
-                        <div class="item">
-                            <img src="{% static "img/portada1.jpg" %}" alt="Imagen">
-                            <div class="item-info">
-                                <div class="item-title">Las aventuras de Larry y sus amigos en el mundo mágico de las fantasías eternas</div>
-                                <div class="item-quantity">Cantidad: 1</div>
-                                <div class="item-price">L 500.00</div>
-                            </div>
-                            <button id="delete-button">
-                                <img src="{% static "img/trash-solid-36.png" %}" alt="eliminar">
-                            </button>
-                        </div>
-                        <div class="item">
-                            <img src="{% static "img/portada1.jpg" %}" alt="Imagen">
-                            <div class="item-info">
-                                <div class="item-title">Las aventuras de Larry y sus amigos en el mundo mágico de las fantasías eternas</div>
-                                <div class="item-quantity">Cantidad: 1</div>
-                                <div class="item-price">L 500.00</div>
-                            </div>
-                            <button id="delete-button">
-                                <img src="{% static "img/trash-solid-36.png" %}" alt="eliminar">
-                            </button>
-                        </div>
-                        <!-- Agrega más items aquí -->
+                        <!-- Items del carrito se añadirán aquí -->
                     </div>
                     <div class="total-container">
                         <div class="total-text">SubTotal</div>
-                        <div class="total-amount">L 3500.00</div>
-                        <button class="order-button">Hacer el pedido</button>
+                        <div class="total-amount" id="subtotal">L 0.00</div>
+                        <button class="order-button" onclick="completeOrder()">Hacer el pedido</button>
                     </div>
                 </div>
                 <div class="container2" id="cart-container2">
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. A, omnis fuga fugit placeat adipisci nemo quia ducimus magni repellendus est, quas ipsum nulla, similique aut cumque inventore sint iure quo.</p>
                 </div>
-                <a href="">
+                <a href="#">
                     <div class="butons">
-                        <img src="{% static "img/hogar.png" %}" alt="home">
+                        <img src="{% static 'img/hogar.png' %}" alt="home">
                         <h3>Inicio</h3>
                     </div>
                 </a>
-                <a href="">
-                    <a class="butons" href="{% url 'login' %}">
-                        <img src="{% static "img/Usuario.png" %}" alt="home">
-                        <h3>Iniciar sesion </h3>
+                <div>
+                    <a href="{% url 'inicio' %}" class="butons">
+                        <img src="{% static 'img/salir.png' %}" alt="">
+                        <h3>Cerrar Sesión</h3>
                     </a>
-                </a>
-                <a href="{% url 'user' %}">
-                    <div class="butons">
-                        <img src="{% static "img/agregar-usuario.png" %}" alt="home">
-                        <h3>Registrar</h3>
-                    </div>
-                </a>
+                </div>
             </nav>
         </div>
     </header>
     <main>
         <div class="titulo">
-            <h1>Mas Populares</h1>
+            <h1>Más Recientes</h1>
         </div>
-
-        <section class="secion1">
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
+        <div class="main">
+            <section class="seccionfinal">
+                {% for libro in libros_recientes %}
+                <div class="book-item" style="width:70%;" data-id="{{ libro.id }}" data-titulo="{{ libro.Titulo }}" data-precio="{{ libro.Precio }}">
+                    {% if libro.Img_Portada %}
+                        <img src="{{ libro.Img_Portada.url }}" alt="Portada" style="max-width: 300px;">
+                    {% else %}
+                        <img src="{% static 'img/default_cover.png' %}" alt="Portada no disponible">
+                    {% endif %}
+                    <div class="book-details">
+                        <button class="add-to-cart-button">
+                            <img src="{% static 'img/boton-mas.png' %}" alt="agregar">
+                            Añadir
+                        </button>
+                        <span>{{ libro.Titulo }}</span>
+                    </div>
                 </div>
+                {% endfor %}
+            </section>
+            <div class="titulo">
+                <h1>Lista Completa de Libros</h1>
             </div>
-
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
+            <section class="imagenes2">
+                {% for libro in page_obj %}
+                <div class="book-item" style="margin-bottom: 50px;" data-id="{{ libro.id }}" data-titulo="{{ libro.Titulo }}" data-precio="{{ libro.Precio }}">
+                    {% if libro.Img_Portada %}
+                        <img src="{{ libro.Img_Portada.url }}" alt="Portada" style="max-width: 300px;">
+                    {% else %}
+                        <img src="{% static 'img/default_cover.png' %}" alt="Portada no disponible">
+                    {% endif %}
+                    <div class="book-details" style="max-width: 300px;">
+                        <button class="add-to-cart-button">
+                            <img src="{% static 'img/boton-mas.png' %}" alt="agregar">
+                            Añadir
+                        </button>
+                        <span>{{ libro.Titulo }}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-        </section>
-        <div class="titulo">
-            <h1>Mas Recientes</h1>
+                {% endfor %}
+            </section>
         </div>
-        <section class="secion1">
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-            <div class="book-item">
-                <img src="{% static "img/portada1.jpg" %}" alt="Libro 1">
-                <div class="book-details">
-                    <span>Libro 1</span>
-                    <button>
-                        <img src="{% static "img/boton-mas.png" %}" alt="agregar">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-        </section>
-        <section class="secion2">
-            <button class="active">1</button>
-            <button>2</button>
-            <button>3</button>
-        </section>
     </main>
     <footer>
         <div class="foter">
@@ -316,13 +153,12 @@
             <p>Somos tu punto de encuentro para explorar y compartir el mundo del conocimiento y la imaginación. Protegemos tu privacidad y garantizamos una experiencia segura. Este sitio está protegido por reCAPTCHA y se aplican la Política de Privacidad y las Condiciones del Servicio de Google.</p>
         </div>
         <div class="sepheader">
-            <img src="{% static "img/logo.png" %}" alt="logo">
+            <img src="{% static 'img/logo.png' %}" alt="logo">
             <h2>Nexus literario</h2>
         </div>
         <div class="foter">
     </footer>
     <script>
-
         function toggleContainer() {
             var container = document.getElementById('cart-container');
             var button = document.querySelector('.toggle-button');
@@ -334,15 +170,104 @@
             }
         }
 
-        function toggleContainer2() {
-        var container2 = document.getElementById('container2');
-        
-        if (container2.style.display === 'none' || container2.style.display === '') {
-            container2.style.display = 'block';
-        } else {
-            container2.style.display = 'none';
+        function toggleContainer2(event) {
+            event.preventDefault();
+            var container2 = document.getElementById('container2');
+            
+            if (!container2.classList.contains('show')) {
+                container2.classList.add('show');
+                container2.style.display = 'block';
+            } else {
+                container2.classList.remove('show');
+                setTimeout(() => {
+                    container2.style.display = 'none';
+                }, 300); // Este tiempo debe coincidir con la duración de la transición en CSS
+            }
         }
+
+        // Obtener elementos del carrito
+        const cartContainer = document.getElementById('cart-container');
+        const itemsContainer = cartContainer.querySelector('.items-container');
+        const subtotalElement = document.getElementById('subtotal');
+        let cart = [];
+        let subtotal = 0;
+
+        // Función para agregar libro al carrito
+        document.querySelectorAll('.add-to-cart-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const bookItem = this.closest('.book-item');
+                const id = bookItem.getAttribute('data-id');
+                const titulo = bookItem.getAttribute('data-titulo');
+                const precio = parseFloat(bookItem.getAttribute('data-precio'));
+                const imagen = bookItem.querySelector('img').src; // Obtener la URL de la imagen
+
+                // Agregar al carrito
+                cart.push({ id, titulo, precio, imagen });
+                updateCart();
+            });
+        });
+
+        // Función para actualizar el carrito y el subtotal
+        function updateCart() {
+        itemsContainer.innerHTML = ''; // Limpiar el carrito
+
+        subtotal = 0;
+        cart.forEach((item, index) => {
+            subtotal += item.precio;
+
+            const itemElement = document.createElement('div');
+            itemElement.className = 'item';
+            itemElement.dataset.index = index; // Usar índice en lugar de id
+
+            itemElement.innerHTML = `
+                <img src="${item.imagen}" alt="Imagen">
+                <div class="item-info">
+                    <div class="item-title">${item.titulo}</div>
+                    <div class="item-price">L ${item.precio.toFixed(2)}</div>
+                </div>
+                <button class="delete-button" data-index="${index}">
+                    <img src="{% static 'img/trash-solid-36.png' %}" alt="eliminar">
+                </button>
+            `;
+
+            itemsContainer.appendChild(itemElement);
+
+            // Agregar funcionalidad de eliminar
+            itemElement.querySelector('.delete-button').addEventListener('click', (e) => {
+                const indexToRemove = parseInt(e.currentTarget.dataset.index);
+                cart.splice(indexToRemove, 1); // Eliminar solo el elemento con el índice específico
+                updateCart();
+            });
+        });
+
+        subtotalElement.textContent = `L ${subtotal.toFixed(2)}`;
     }
+        // Función para completar el pedido
+        function completeOrder() {
+            alert('Pedido realizado');
+            cart = [];
+            updateCart();
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+        var form = document.querySelector('#container2 form');
+        var paginationLinks = document.querySelectorAll('.pagination a');
+        
+        paginationLinks.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                var url = new URL(this.href);
+                var formData = new FormData(form);
+                
+                for(var pair of formData.entries()) {
+                    url.searchParams.append(pair[0], pair[1]);
+                }
+                
+                window.location.href = url.toString();
+            });
+        });
+    });
 
     </script>
 </body>

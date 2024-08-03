@@ -10,7 +10,7 @@ class Libros(models.Model):
     Precio = models.IntegerField()
     Descripcion = models.TextField()
     Fecha_Publicacion = models.DateField()
-    Fecha_Now = models.DateField(auto_now_add=True)
+    Fecha_Now = models.DateTimeField(auto_now_add=True)
     Img_Portada = models.ImageField(upload_to='portadas' , null=True)
     
     def __str__(self):

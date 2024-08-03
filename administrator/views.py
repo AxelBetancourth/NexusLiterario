@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from .forms import FormularioAdmin
 from .models import Libros, Categorias, Categorias_Libros
@@ -86,3 +86,9 @@ def eliminar_libro(request, libro_id):
         libro.delete()
         return JsonResponse({'success': True, 'message': 'Libro eliminado con éxito'})
     return JsonResponse({'success': False, 'message': 'Método no permitido'})
+
+
+def logoutview (request):
+    request.session.flush()
+    
+    return redirect('main2')
