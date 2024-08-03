@@ -24,8 +24,8 @@
             </div>
     
             <div>
-                <a href="{% url 'main' %}" class="navegador">
-                    <img src="{% static "img/usuario.png" %}" alt="">
+                <a href="{% url 'inicio' %}" class="navegador">
+                    <img src="{% static "img/salir.png" %}" alt="">
                     <h3>Cerrar Sesión</h3>
                 </a>
             </div>
@@ -53,7 +53,6 @@
                 </form>
 
                 <div id="resultados_busqueda" class="resultados-busqueda">
-                    <!-- Aquí se mostrarán los resultados de la búsqueda -->
                      <!-- <p>Aquí se mostrarán los resultados de la búsqueda </p> -->
                 </div>
             </div>
@@ -121,11 +120,11 @@
 
             searchInput.addEventListener('input', function() {
                 if (searchInput.value.trim() !== '') {
-                    resultsContainer.style.display = 'block'; // Muestra los resultados
-                    document.querySelector('.img-delete').style.display = 'block'; // Muestra el ícono de eliminar
+                    resultsContainer.style.display = 'block';
+                    document.querySelector('.img-delete').style.display = 'block';
                 } else {
-                    resultsContainer.style.display = 'none'; // Oculta los resultados
-                    document.querySelector('.img-delete').style.display = 'none'; // Oculta el ícono de eliminar
+                    resultsContainer.style.display = 'none';
+                    document.querySelector('.img-delete').style.display = 'none'; // 
                 }
             });
         });
@@ -253,6 +252,7 @@
             .then(response => response.json())
             .then(data => {
                 resultadosDiv.innerHTML = '';
+                
                 if (data.resultados.length === 0) {
                     resultadosDiv.innerHTML = '<p>No se encontraron resultados.</p>';
                 } else {

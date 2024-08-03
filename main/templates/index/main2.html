@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <button>
+        <div class="sepheader">
+            <img src="{% static "img/logo.png" %}" alt="logo">
+            <h2>Nexus literario</h2>
+        </div>
+        </button>
+        <div class="sepheader" >
+            <button class="toggle-button2" onclick="toggleContainer2()" >
+                    <img src="{% static "img/filtrar.png" %}" alt="filtrar" id="filtroo">
+            </button>
+        </div>
+        <div class="sepheader">
+            <nav class="nav">
+                <div class="filtro">
+                    <button class="toggle-button" onclick="toggleContainer()">
+                        <img src="{% static "img/CarritoAna.png" %}" alt="carrito">
+                    </button>
+                </div>
+                <a href="">
+                    <div class="butons">
+                        <img src="{% static "img/hogar.png" %}" alt="home">
+                        <h3>Inicio</h3>
+                    </div>
+                </a>
+                <a href="">
+                    <a class="butons" href="{% url 'login' %}">
+                        <img src="{% static "img/Usuario.png" %}" alt="home">
+                        <h3>Iniciar sesion </h3>
+                    </a>
+                </a>
+                <a href="{% url 'user' %}">
+                    <div class="butons">
+                        <img src="{% static "img/agregar-usuario.png" %}" alt="home">
+                        <h3>Registrar</h3>
+                    </div>
+                </a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="titulo"  style="margin-top: 350px; margin-bottom: 350px;">
+            <h1>Inicie sesion para tener acceso a la pagina</h1>
+        </div>
+
+    </main>
+    <footer>
+        <div class="foter">
+            <h3>Conectando Mentes a Través de los Libros</h3>
+            <br>
+            <p>Somos tu punto de encuentro para explorar y compartir el mundo del conocimiento y la imaginación. Protegemos tu privacidad y garantizamos una experiencia segura. Este sitio está protegido por reCAPTCHA y se aplican la Política de Privacidad y las Condiciones del Servicio de Google.</p>
+        </div>
+        <div class="sepheader">
+            <img src="{% static "img/logo.png" %}" alt="logo">
+            <h2>Nexus literario</h2>
+        </div>
+        <div class="foter">
+    </footer>
+    <script>
+    function toggleContainer() {
+        alert('Debe iniciar sesión para usar el carrito.');
+    }
+        function toggleContainer2() {
+        alert('Debe iniciar sesión para usar el filtro.');
+    }
+    </script>
+</body>
+</html>
